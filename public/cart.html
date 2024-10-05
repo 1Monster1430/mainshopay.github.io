@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Cart</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f7f7;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #28a745;
+            color: white;
+            padding: 20px;
+        }
+
+        h1 {
+            margin: 0;
+        }
+
+        nav {
+            margin-left: auto;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        main {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .cart-item img {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            margin-right: 10px;
+        }
+
+        button.remove {
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 5px 10px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button.remove:hover {
+            background-color: #c82333;
+        }
+
+        button.checkout {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px;
+            cursor: pointer;
+            display: block;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        button.checkout:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Your Cart</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="cart.html">Cart</a>
+            <a href="aut/login.html">Login</a>
+        </nav>
+    </header>
+    <main>
+        <h2>Products in Your Cart</h2>
+        <div id="cart-items">
+            <!-- JavaScript will populate cart items here -->
+        </div>
+        <button class="checkout" onclick="checkout()">Checkout</button>
+    </main>
+
+    <script>
+        // Retrieve cart from local storage
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        function displayCartItems() {
+            const cartItemsContainer = document.getElementById('cart-items');
+            cartItemsContainer.innerHTML = ''; // Clear existing cart items
+
+            cart.forEach((product, index) => {
+                const itemDiv = document.createElement('div');
+                itemDiv.className = 'cart-item';
+                itemDiv.innerHTML = `
+                    <img src="${product.image}" alt="${product.name}">
+                    <div>
+                        <strong>${product.name}</strong>
+                        <p>$${product.price.toFixed(2)}</p>
+                    </div>
+                    <button class="remove" onclick="removeFromCart(${index})">Remove</button>
+                `;
+                cartItemsContainer.appendChild(itemDiv);
+            });
+        }
+
+        function removeFromCart(index) {
+            // Remove product from cart
+            cart.splice(index, 1);
+            localStorage.setItem('cart', JSON.stringify(cart)); // Update local storage
+            displayCartItems(); // Refresh cart display
+            alert('Product removed from cart.');
+        }
+
+        function checkout() {
+            // Redirect to checkout page
+            window.location.href = 'checkout.html'; // Update this to the actual checkout page URL
+        }
+
+        // Initial display of cart items
+        displayCartItems();
+    </script>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Shopay</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <style>
+        body {
+            background: url('../images/tyhb_16.jpg') no-repeat center center fixed;
+            background-size: cover;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .form-container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 50px;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            width: 320px;
+            display: flex;
+            flex-direction: column;
+            align-items: stretch; /* Align items to stretch */
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #5cb85c;
+            color: white;
+            border: none;
+            padding: 10px;
+            width: 100%; /* Make button full width */
+            cursor: pointer;
+            border-radius: 6px;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #4cae4c;
+        }
+        .social-login {
+            display: flex;
+            justify-content: space-between; /* Align buttons evenly */
+            margin-top: 10px;
+        }
+        .social-login button {
+            flex: 1; /* Make buttons take equal space */
+            margin: 0 5px; /* Add space between buttons */
+            background-color: #f7f7f7;
+            color: #333;
+            border: 1px solid #ccc;
+        }
+        footer {
+            text-align: center;
+            padding: 5px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1>Login to Shopay</h1>
+        <form action="/auth/login" method="POST">
+            <input type="email" id="email" name="email" placeholder="Email" required>
+            <input type="password" id="password" name="password" placeholder="Password" required>
+            <button type="submit">Login</button>
+        </form>
+
+        <div class="social-login">
+            <button onclick="window.location.href='/auth/google'">Google</button>
+            <button onclick="window.location.href='/auth/facebook'">Facebook</button>
+        </div>
+
+        <footer>
+            <p>Don’t have an account? <a href="signup.html">Sign Up</a></p>
+            <p><a href="#">Forgot Password?</a></p>
+        </footer>
+    </div>
+</body>
+</html>
